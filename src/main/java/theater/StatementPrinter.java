@@ -7,7 +7,10 @@ import java.util.Map;
 /**
  * This class generates a statement for a given invoice of performances.
  */
+
 public class StatementPrinter {
+
+    private static final String PERFORMANCE_NOT_FOUND_MESSAGE = "Performance not found";
 
     private final StatementData statementData;
 
@@ -73,7 +76,7 @@ public class StatementPrinter {
                 return data.getAmount();
             }
         }
-        throw new IllegalArgumentException("Performance not found");
+        throw new IllegalArgumentException(PERFORMANCE_NOT_FOUND_MESSAGE);
     }
 
     private Play getPlay(Performance performance) {
@@ -82,7 +85,7 @@ public class StatementPrinter {
                 return data.getPlay();
             }
         }
-        throw new IllegalArgumentException("Performance not found");
+        throw new IllegalArgumentException(PERFORMANCE_NOT_FOUND_MESSAGE);
     }
 
     private int getVolumeCredits(Performance performance) {
@@ -91,7 +94,7 @@ public class StatementPrinter {
                 return data.getVolumeCredits();
             }
         }
-        throw new IllegalArgumentException("Performance not found");
+        throw new IllegalArgumentException(PERFORMANCE_NOT_FOUND_MESSAGE);
     }
 
     private int getTotalAmount() {

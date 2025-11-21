@@ -21,7 +21,7 @@ public class PastoralCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public int volumeCredits() {
-        int audience = getPerformance().getAudience();
+        final int audience = getPerformance().getAudience();
         int result = Math.max(
                 audience - Constants.PASTORAL_VOLUME_CREDIT_THRESHOLD,
                 0);

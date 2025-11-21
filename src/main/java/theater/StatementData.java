@@ -16,8 +16,8 @@ public class StatementData {
         this.customer = invoice.getCustomer();
         this.performances = new ArrayList<>();
         for (Performance performance : invoice.getPerformances()) {
-            Play play = plays.get(performance.getPlayID());
-            AbstractPerformanceCalculator calculator =
+            final Play play = plays.get(performance.getPlayID());
+            final AbstractPerformanceCalculator calculator =
                     AbstractPerformanceCalculator.createPerformanceCalculator(performance, play);
             this.performances.add(new PerformanceData(
                     performance,
