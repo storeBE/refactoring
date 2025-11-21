@@ -90,7 +90,7 @@ public class StatementPrinter {
     // ---- Task 2.3: Remove frmt local; add usd helper ----
 
     private String usd(int amountInCents) {
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
         // divide by 100.0 to keep cents; formatting will show 2 decimals.
         return format.format(amountInCents / (double) Constants.PERCENT_FACTOR);
     }
