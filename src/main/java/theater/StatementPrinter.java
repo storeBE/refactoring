@@ -65,4 +65,40 @@ public class StatementPrinter {
         final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
         return format.format(amountInCents / (double) Constants.PERCENT_FACTOR);
     }
+    // Helper methods kept for compatibility with earlier refactoring steps.
+
+    private int getAmount(Performance performance) {
+        for (final PerformanceData data : statementData.getPerformances()) {
+            if (data.getPerformance() == performance) {
+                return data.getAmount();
+            }
+        }
+        throw new IllegalArgumentException("Performance not found");
+    }
+
+    private Play getPlay(Performance performance) {
+        for (final PerformanceData data : statementData.getPerformances()) {
+            if (data.getPerformance() == performance) {
+                return data.getPlay();
+            }
+        }
+        throw new IllegalArgumentException("Performance not found");
+    }
+
+    private int getVolumeCredits(Performance performance) {
+        for (final PerformanceData data : statementData.getPerformances()) {
+            if (data.getPerformance() == performance) {
+                return data.getVolumeCredits();
+            }
+        }
+        throw new IllegalArgumentException("Performance not found");
+    }
+
+    private int getTotalAmount() {
+        return statementData.totalAmount();
+    }
+
+    private int getTotalVolumeCredits() {
+        return statementData.volumeCredits();
+    }
 }
