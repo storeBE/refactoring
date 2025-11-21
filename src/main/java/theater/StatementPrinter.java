@@ -23,12 +23,12 @@ public class StatementPrinter {
     protected StatementData getStatementData() {
         return statementData;
     }
+
     /**
      * Generates the statement string for this invoice.
      *
      * @return the formatted statement
      */
-
     public String statement() {
         return renderPlainText(statementData);
     }
@@ -46,7 +46,7 @@ public class StatementPrinter {
         for (PerformanceData performanceData : data.getPerformances()) {
             result.append(String.format("  %s: %s (%s seats)%n",
                     performanceData.getName(),
-                    usd(performanceData.amountFor()),
+                    usd(performanceData.getAmount()),
                     performanceData.getAudience()));
         }
 

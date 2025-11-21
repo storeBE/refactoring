@@ -16,8 +16,14 @@ public class StatementData {
         this.customer = invoice.getCustomer();
         this.performances = new ArrayList<>();
         for (Performance performance : invoice.getPerformances()) {
-            final Play play = plays.get(performance.getPlayID());
-            this.performances.add(new PerformanceData(performance, play));
+            Play play = plays.get(performance.getPlayID());
+            AbstractPerformanceCalculator calculator =
+                    AbstractPerformanceCalculator.createPerformanceCalculator(performance, play);
+            this.performances.add(new PerformanceData(
+                    performance,
+                    play,
+                    calculator.amountFor(),
+                    calculator.volumeCredits()));
         }
     }
 
@@ -37,7 +43,7 @@ public class StatementData {
     public int totalAmount() {
         int result = 0;
         for (PerformanceData performanceData : performances) {
-            result += performanceData.amountFor();
+            result += performanceData.getAmount();
         }
         return result;
     }
@@ -50,7 +56,7 @@ public class StatementData {
     public int volumeCredits() {
         int result = 0;
         for (PerformanceData performanceData : performances) {
-            result += performanceData.volumeCredits();
+            result += performanceData.getVolumeCredits();
         }
         return result;
     }

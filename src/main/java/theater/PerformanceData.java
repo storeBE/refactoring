@@ -7,10 +7,14 @@ public class PerformanceData {
 
     private final Performance performance;
     private final Play play;
+    private final int amount;
+    private final int volumeCredits;
 
-    public PerformanceData(Performance performance, Play play) {
+    public PerformanceData(Performance performance, Play play, int amount, int volumeCredits) {
         this.performance = performance;
         this.play = play;
+        this.amount = amount;
+        this.volumeCredits = volumeCredits;
     }
 
     public String getName() {
@@ -34,45 +38,20 @@ public class PerformanceData {
     }
 
     /**
-     * Calculates the amount owed for this performance, in cents.
+     * Returns the amount owed for this performance, in cents.
      *
      * @return amount in cents
      */
-    public int amountFor() {
-        int result;
-        switch (play.getType()) {
-            case "tragedy":
-                result = Constants.TRAGEDY_BASE_AMOUNT;
-                if (performance.getAudience() > Constants.TRAGEDY_AUDIENCE_THRESHOLD) {
-                    result += Constants.TRAGEDY_OVER_BASE_CAPACITY_PER_PERSON
-                            * (performance.getAudience() - Constants.TRAGEDY_AUDIENCE_THRESHOLD);
-                }
-                break;
-            case "comedy":
-                result = Constants.COMEDY_BASE_AMOUNT;
-                if (performance.getAudience() > Constants.COMEDY_AUDIENCE_THRESHOLD) {
-                    result += Constants.COMEDY_OVER_BASE_CAPACITY_AMOUNT
-                            + (Constants.COMEDY_OVER_BASE_CAPACITY_PER_PERSON
-                            * (performance.getAudience() - Constants.COMEDY_AUDIENCE_THRESHOLD));
-                }
-                result += Constants.COMEDY_AMOUNT_PER_AUDIENCE * performance.getAudience();
-                break;
-            default:
-                throw new RuntimeException(String.format("unknown type: %s", play.getType()));
-        }
-        return result;
+    public int getAmount() {
+        return amount;
     }
 
     /**
-     * Calculates the volume credits earned for this performance.
+     * Returns the volume credits earned for this performance.
      *
      * @return volume credits
      */
-    public int volumeCredits() {
-        int result = Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
-        if ("comedy".equals(play.getType())) {
-            result += performance.getAudience() / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
-        }
-        return result;
+    public int getVolumeCredits() {
+        return volumeCredits;
     }
 }
