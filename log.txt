@@ -1,3 +1,15 @@
-Task 1.2
-Task 2.1, 2.2
-Task 3.1, Task 3.2
+af8a09c Task 2.4
+80d85d5 Task 2.3
+5ec62b0 Task 2.2
+dc1703f Task 2.1
+11db187 Task 1.2
+f986780 Task 1.1
+e495cff Task 3 completed (revision 1)
+f905151 Task 1 and 2 completed (revision 1)
+0d3833f Task 1 and 2 completed
+2b4f164 fixed tests for the not-for-credit tasks; parameter ordering and ensuring consistent line endings.
+ff5004e adding shortcut keys for Inline Variable (Re: Piazza question)
+b545fe2 clarifying extracted method names in README.md
+a0124c9 fixing starter file
+c8d9d38 adding starter files
+cbe4517 first commit
